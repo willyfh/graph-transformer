@@ -1,14 +1,19 @@
-# graph-transformer
+# Graph Transformer (IJCAI 2021)
 
-An unofficial implementation of Graph Transformer (Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification) - IJCAI 2021
+An unofficial implementation of Graph Transformer:<br/>
+Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification) - IJCAI 2021 > https://www.ijcai.org/proceedings/2021/0214.pdf
+
+This GNN architecture is implemented based on Section 3.1 (Graph Transformer) in the paper.
+
+I implemented the code by referring to [this repository](https://github.com/lucidrains/graph-transformer-pytorch), but with some modifications to match with the original paper.
+
+![image](https://github.com/willyfh/graph-transformer/blob/main/graph-transformer-architecture.png?raw=true)
 
 ## Installation
 
 ```bash
 pip install graph-transformer
 ```
-
-GraphTransformerModel(512, 512, 2, 8, False)
 ## Usage
 ```python
 from graph_transformer import GraphTransformerModel
