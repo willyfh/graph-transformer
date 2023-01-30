@@ -5,7 +5,7 @@ Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Class
 
 This GNN architecture is implemented based on Section 3.1 (Graph Transformer) in the paper.
 
-I implemented the code by referring to [this repository](https://github.com/lucidrains/graph-transformer-pytorch), but with some modifications to match with the original paper.
+I implemented the code by referring to [this repository](https://github.com/lucidrains/graph-transformer-pytorch), but with some modifications to match with the original published paper in IJCAI 2021.
 
 ![image](https://github.com/willyfh/graph-transformer/blob/main/graph-transformer-architecture.png?raw=true)
 
