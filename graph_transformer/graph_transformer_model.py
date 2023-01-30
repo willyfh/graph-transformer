@@ -4,8 +4,8 @@
     
     In the comments of this code, when "Eq (x)" is mentioned, it refers to the equations in the above paper.
         
-    The implementation is referred to this repository (https://github.com/lucidrains/graph-transformer-pytorch),
-    but with some modifications by referring to the original paper.
+    I implemented this code by referring to this repository (https://github.com/lucidrains/graph-transformer-pytorch),
+    but with some modifications to match with the original published paper (IJCAI-21).
     
 """
 
