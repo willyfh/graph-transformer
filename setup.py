@@ -8,6 +8,7 @@ setup(
     author='Willy Fitra Hendria',
     author_email = 'willyfitrahendria@gmail.com',
     url = 'https://github.com/willyfh/graph-transformer',
+    download_url = 'https://github.com/willyfh/graph-transformer/archive/refs/tags/v0.1.tar.gz',
     keywords = ['deep learning','transformers','graph neural networks'],
     license='MIT',
     install_requires=['torch>=1.6', 'numpy>=1.8'],
