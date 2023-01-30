@@ -16,6 +16,7 @@ pip install graph-transformer
 ```
 ## Usage
 ```python
+import torch
 from graph_transformer import GraphTransformerModel
 
 model = GraphTransformerModel(
