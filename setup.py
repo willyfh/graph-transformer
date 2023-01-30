@@ -4,7 +4,6 @@ setup(
     description='This is the implementation of Graph Transformer (https://www.ijcai.org/proceedings/2021/0214.pdf)',
     packages=find_packages(include=['graph-transformer']),
     version='0.1',
-    description='Graph Transformer Model',
     author='Willy Fitra Hendria',
     author_email = 'willyfitrahendria@gmail.com',
     url = 'https://github.com/willyfh/graph-transformer',
