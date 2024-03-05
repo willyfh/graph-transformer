@@ -1,5 +1,7 @@
 # Graph Transformer (IJCAI 2021)
 
+[![python](https://img.shields.io/badge/python-3.8%2B-blue)]() [![pytorch](https://img.shields.io/badge/pytorch-1.6%2B-orange)]() [![Downloads](https://static.pepy.tech/personalized-badge/graph-transformer?period=total&units=international_system&left_color=grey&right_color=green&left_text=PyPI%20Downloads)](https://pepy.tech/project/graph-transformer)
+
 An unofficial implementation of Graph Transformer:<br/>
 Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification) - IJCAI 2021 > https://www.ijcai.org/proceedings/2021/0214.pdf
 
