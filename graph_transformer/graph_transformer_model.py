@@ -69,7 +69,8 @@ class GraphTransformer(nn.Module):
         self.lin_q = nn.Linear(in_dim, inner_dim)
         self.lin_k = nn.Linear(in_dim, inner_dim)
         self.lin_v = nn.Linear(in_dim, inner_dim)
-        self.lin_e = nn.Linear(edge_dim, inner_dim)
+        if edge_dim:
+            self.lin_e = nn.Linear(edge_dim, inner_dim)
         
     def forward(self, nodes, edges, adjacency):
         h = self.num_heads
@@ -84,7 +85,8 @@ class GraphTransformer(nn.Module):
         v = self.lin_v(nodes) # batch x n_nodes x dim -> batch x n_nodes x inner_dim
         
         # Eq (3)
-        e = self.lin_e(edges) # batch x n_nodes x n_nodes x edge_dim
+        if edges:
+            e = self.lin_e(edges) # batch x n_nodes x n_nodes x edge_dim
         
         # Split the inner_dim into multiple head, b .. (h d) - > (b h) .. d
         # The attention score later will be computed for each head     
@@ -92,7 +94,8 @@ class GraphTransformer(nn.Module):
         k =k.view(-1, n_nodes, h, self.out_dim).permute(0,2,1,3).reshape(-1, n_nodes, self.out_dim)
         v =v.view(-1, n_nodes, h, self.out_dim).permute(0,2,1,3).reshape(-1, n_nodes, self.out_dim)
         
-        e = e.view(-1, n_nodes,n_nodes, h, self.out_dim).permute(0,3,1,2,4).reshape(-1, n_nodes,n_nodes, self.out_dim)
+        if edges:
+            e = e.view(-1, n_nodes,n_nodes, h, self.out_dim).permute(0,3,1,2,4).reshape(-1, n_nodes,n_nodes, self.out_dim)
         
         # Add additional dimension in axis=1 so that it can be added with e.
         # Eg. (batch, 1, n_nodes, out_dim) + (batch, n_nodes, n_nodes, out_dim) 
@@ -100,10 +103,12 @@ class GraphTransformer(nn.Module):
         v = torch.unsqueeze(v, 1)
 
         # Eq (3), addition in the attention score computation
-        k = k + e
+        if edges:
+            k = k + e
         
         # Eq (4), addition before concatenation of multi-head
-        v = v + e
+        if edges:
+            v = v + e
         
         # Scaled dot-product, before softmax, only <q, k + e> in Eq (3)
         sim = einsum('b i d, b i j d -> b i j', q, k) / math.sqrt(self.out_dim)
