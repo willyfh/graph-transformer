@@ -69,7 +69,7 @@ class GraphTransformer(nn.Module):
         self.lin_q = nn.Linear(in_dim, inner_dim)
         self.lin_k = nn.Linear(in_dim, inner_dim)
         self.lin_v = nn.Linear(in_dim, inner_dim)
-        if edge_dim:
+        if edge_dim is not None:
             self.lin_e = nn.Linear(edge_dim, inner_dim)
         
     def forward(self, nodes, edges, adjacency):
@@ -85,7 +85,7 @@ class GraphTransformer(nn.Module):
         v = self.lin_v(nodes) # batch x n_nodes x dim -> batch x n_nodes x inner_dim
         
         # Eq (3)
-        if edges:
+        if edges is not None:
             e = self.lin_e(edges) # batch x n_nodes x n_nodes x edge_dim
         
         # Split the inner_dim into multiple head, b .. (h d) - > (b h) .. d
@@ -94,7 +94,7 @@ class GraphTransformer(nn.Module):
         k =k.view(-1, n_nodes, h, self.out_dim).permute(0,2,1,3).reshape(-1, n_nodes, self.out_dim)
         v =v.view(-1, n_nodes, h, self.out_dim).permute(0,2,1,3).reshape(-1, n_nodes, self.out_dim)
         
-        if edges:
+        if edges is not None:
             e = e.view(-1, n_nodes,n_nodes, h, self.out_dim).permute(0,3,1,2,4).reshape(-1, n_nodes,n_nodes, self.out_dim)
         
         # Add additional dimension in axis=1 so that it can be added with e.
@@ -103,11 +103,11 @@ class GraphTransformer(nn.Module):
         v = torch.unsqueeze(v, 1)
 
         # Eq (3), addition in the attention score computation
-        if edges:
+        if edges is not None:
             k = k + e
         
         # Eq (4), addition before concatenation of multi-head
-        if edges:
+        if edges is not None:
             v = v + e
         
         # Scaled dot-product, before softmax, only <q, k + e> in Eq (3)
