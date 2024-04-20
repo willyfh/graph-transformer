@@ -3,7 +3,7 @@ setup(
     name='graph-transformer',
     description='This is the implementation of Graph Transformer (https://www.ijcai.org/proceedings/2021/0214.pdf)',
     packages=find_packages(),
-    version='0.2.0',
+    version='0.2.1',
     author='Willy Fitra Hendria',
     author_email = 'willyfitrahendria@gmail.com',
     url = 'https://github.com/willyfh/graph-transformer',
