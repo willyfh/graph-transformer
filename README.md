@@ -36,3 +36,5 @@ adjacency = torch.ones(1, 128, 128)
 
 nodes = model(nodes, edges, adjacency)
 ```
+
+**Note**: If your graph does not have edge features, you can set `edge_dim` and `edges` (in the forward pass) to `None`.
